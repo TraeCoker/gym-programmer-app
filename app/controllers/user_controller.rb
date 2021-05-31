@@ -4,4 +4,6 @@ class UserController < ApplicationController
         erb :'users/new'
     end 
 
+    
+
 end 
