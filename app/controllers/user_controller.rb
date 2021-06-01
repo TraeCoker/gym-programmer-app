@@ -29,4 +29,8 @@ class UserController < ApplicationController
             redirect '/login'
     end 
 
+    post '/logout' do 
+        sessions.clear
+        redirect '/'
+    end 
 end 
