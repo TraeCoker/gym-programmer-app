@@ -4,6 +4,15 @@ class UserController < ApplicationController
         erb :'users/new'
     end 
 
-    
+    post '/signup' do 
+        user = User.new(params)
+         
+        if user.save
+            redirect '/'
+        else 
+            redirect '/signup'
+        end 
+    end 
+
 
 end 
