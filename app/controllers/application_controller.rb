@@ -14,7 +14,6 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do 
-
     def current_user 
       @current_user ||= User.find(session[:user_id])
     end 
@@ -22,7 +21,6 @@ class ApplicationController < Sinatra::Base
     def logged_in?
       !!current_user
     end 
-    
   end 
 
 end
