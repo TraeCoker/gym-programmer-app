@@ -4,5 +4,8 @@ class ProgramController < ApplicationController
         erb :'programs/index'
     end 
 
+    get '/programs/new' do 
+        erb :'programs/new'
+    end 
 
 end 
