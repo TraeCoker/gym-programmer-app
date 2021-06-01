@@ -4,11 +4,6 @@ class UserController < ApplicationController
         erb :'users/new'
     end 
 
-    get '/login' do
-        erb :'users/login'
-    end 
-
-
     post '/signup' do 
         user = User.new(params)
          
@@ -20,5 +15,18 @@ class UserController < ApplicationController
         end 
     end 
 
+    get '/login' do
+        erb :'users/login'
+    end 
+
+    post '/login' do 
+        user = User.find_by_username(params[:username])
+
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id 
+            redirect '/'
+        end 
+            redirect '/login'
+    end 
 
 end 
