@@ -9,7 +9,7 @@ class ProgramController < ApplicationController
     end 
 
     post '/programs' do
-        
+        session[:program_name] = params[:name]
         session[:days] = params[:days]
         if params[:workout] == nil 
             redirect '/programs/new'

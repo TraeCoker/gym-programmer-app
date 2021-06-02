@@ -1,7 +1,7 @@
 
 <form action='/programs' method="POST">
   <label for="name">Program Name:</label>
-  <input type="text" name="name"><br><br>
+  <input type="text" name="name" value="<%=session[:program_name] if session[:program_name]%>"><br><br>
 
   <label for="checkbox">Choose days per week:</label><br>
   <input type="checkbox" id="monday" name="days[]" value="Monday" <%= 'checked' if session[:days] && session[:days].include?("Monday") %>>
