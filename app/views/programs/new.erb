@@ -1,22 +1,23 @@
 
 <form action='/programs' method="POST">
-  <input type="checkbox" id="monday" name="days[]" value="Monday">
+  <input type="checkbox" id="monday" name="days[]" value="Monday" <%= 'checked' if session[:days].include?("Monday") %>>
   <label for="monday">Monday</label><br>
-  <input type="checkbox" id="tuesday" name="days[]" value="Tuesday">
+  <input type="checkbox" id="tuesday" name="days[]" value="Tuesday" <%= 'checked' if session[:days].include?("Tuesday") %>>
   <label for="tuesday">Tuesday</label><br>
-  <input type="checkbox" id="wednesday" name="days[]" value="Wednesday">
+  <input type="checkbox" id="wednesday" name="days[]" value="Wednesday" <%= 'checked' if session[:days].include?("Wednesday") %>>
   <label for="wednesday">Wednesday</label><br>
-  <input type="checkbox" id="thursday" name="days[]" value="Thursday">
+  <input type="checkbox" id="thursday" name="days[]" value="Thursday" <%= 'checked' if session[:days].include?("Thursday") %>>
   <label for="thursday">Thursday</label><br>
-  <input type="checkbox" id="friday" name="days[]" value="Friday">
+  <input type="checkbox" id="friday" name="days[]" value="Friday" <%= 'checked' if session[:days].include?("Friday") %>>
   <label for="friday">Friday</label><br>
-  <input type="checkbox" id="saturday" name="days[]" value="Saturday">
+  <input type="checkbox" id="saturday" name="days[]" value="Saturday" <%= 'checked' if session[:days].include?("Saturday") %>>
   <label for="saturday">Saturday</label><br>
-  <input type="checkbox" id="sunday" name="days[]" value="Sunday">
+  <input type="checkbox" id="sunday" name="days[]" value="Sunday" <%= 'checked' if session[:days].include?("Sunday") %>>
   <label for="sunday">Sunday</label><br>
 <%if session[:days]%>
-    <%session[:days].times do%>
-        
+    <%session[:days].each do |day|%>
+        <%=day%>
+        <input type="text">
     <%end%>
 <%end%>
 
