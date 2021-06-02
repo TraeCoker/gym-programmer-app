@@ -2,30 +2,32 @@
 <form action='/programs' method="POST">
   <label for="name">Program Name:</label>
   <input type="text" name="name"><br><br>
+
   <label for="checkbox">Choose days per week:</label><br>
-  <input type="checkbox" id="monday" name="days[]" value="Monday" <%= 'checked' if session[:days].include?("Monday") %>>
+  <input type="checkbox" id="monday" name="days[]" value="Monday" <%= 'checked' if session[:days] && session[:days].include?("Monday") %>>
   <label for="monday">Monday</label><br>
-  <input type="checkbox" id="tuesday" name="days[]" value="Tuesday" <%= 'checked' if session[:days].include?("Tuesday") %>>
+  <input type="checkbox" id="tuesday" name="days[]" value="Tuesday" <%= 'checked' if session[:days] && session[:days].include?("Tuesday") %>>
   <label for="tuesday">Tuesday</label><br>
-  <input type="checkbox" id="wednesday" name="days[]" value="Wednesday" <%= 'checked' if session[:days].include?("Wednesday") %>>
+  <input type="checkbox" id="wednesday" name="days[]" value="Wednesday" <%= 'checked' if session[:days] &&  session[:days].include?("Wednesday") %>>
   <label for="wednesday">Wednesday</label><br>
-  <input type="checkbox" id="thursday" name="days[]" value="Thursday" <%= 'checked' if session[:days].include?("Thursday") %>>
+  <input type="checkbox" id="thursday" name="days[]" value="Thursday" <%= 'checked' if session[:days] && session[:days].include?("Thursday") %>>
   <label for="thursday">Thursday</label><br>
-  <input type="checkbox" id="friday" name="days[]" value="Friday" <%= 'checked' if session[:days].include?("Friday") %>>
+  <input type="checkbox" id="friday" name="days[]" value="Friday" <%= 'checked' if session[:days] && session[:days].include?("Friday") %>>
   <label for="friday">Friday</label><br>
-  <input type="checkbox" id="saturday" name="days[]" value="Saturday" <%= 'checked' if session[:days].include?("Saturday") %>>
+  <input type="checkbox" id="saturday" name="days[]" value="Saturday" <%= 'checked' if session[:days] && session[:days].include?("Saturday") %>>
   <label for="saturday">Saturday</label><br>
-  <input type="checkbox" id="sunday" name="days[]" value="Sunday" <%= 'checked' if session[:days].include?("Sunday") %>>
+  <input type="checkbox" id="sunday" name="days[]" value="Sunday" <%= 'checked' if session[:days] && session[:days].include?("Sunday") %>>
   <label for="sunday">Sunday</label><br><br>
+
 <%if session[:days]%>
     <%session[:days].each do |day|%>
         <h3><%=day%></h3>
         <%i = 1%>
         <% 9.times do %>
         <label for="exercise"> Excercise <%=i%>:</label>
-        <input type="text" name="<%=day%>[][exercise][name]">
-        sets: <input type="text" name="<%=day%>[][exercise][sets]">
-        reps: <input type="text" name="<%=day%>[][exercise][reps]"><br>
+        <input type="text" name="<%=day%>[workout][][name]">
+        sets: <input type="text" name="<%=day%>[workout][][sets]">
+        reps: <input type="text" name="<%=day%>[workout][][reps]"><br>
         <%i += 1%>
         <%end%>
     <%end%>
