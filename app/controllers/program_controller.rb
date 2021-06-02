@@ -16,11 +16,10 @@ class ProgramController < ApplicationController
             redirect '/programs/new'
         end 
 
-        if params[:days]
-            clean_exercise_input
+        if params[:days] && clean_exercise_input
             
-            if params[:submit] && params[:workout] != {} && params[:name]
-                
+            if params[:submit] && params[:workout] != {} && !params[:name].blank?
+
                 user = User.find(session[:user_id])
                 program = Program.create(name: params[:name], days_per_week: params[:days].count, user_id: user.id) 
 
@@ -43,12 +42,14 @@ class ProgramController < ApplicationController
 
     def clean_exercise_input
         params[:days].each do |day|
-            exercises = params[:workout][day]
-
-            exercises.each do |exercise|
-                exercise.delete_if {|key, value| value.blank?}
-            end  
-            exercises.delete_if &:empty?
+            #binding.pry
+            exercises = params[:workout][day] 
+            if exercises 
+                exercises.each do |exercise|
+                    exercise.delete_if {|key, value| value.blank?}
+                end  
+                exercises.delete_if &:empty?
+            end
         end 
             params[:workout].delete_if {|k, v| v == []}
             #binding.pry
