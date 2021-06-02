@@ -11,6 +11,7 @@ class ProgramController < ApplicationController
     post '/programs' do
         session[:program_name] = params[:name]
         session[:days] = params[:days]
+        binding.pry
         if params[:workout] == nil 
             redirect '/programs/new'
         end 
