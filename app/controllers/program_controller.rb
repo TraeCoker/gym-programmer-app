@@ -35,6 +35,8 @@ class ProgramController < ApplicationController
     end 
 
     get '/programs/:id' do 
+        @program = Program.find(params[:id])
+        
         erb :'programs/show'
     end 
 

@@ -1,0 +1,11 @@
+<h1><%=@program.name%></h2>
+<h2>by <%=current_user.username%></h2>
+<ul>
+<%@program.workouts.each do |workout|%>
+    <h3><%=workout.day_of_week%></h3>
+    <ul><%workout.exercises.each do |exercise|%>
+        <li><%=exercise.name%> <%=exercise.sets%> x <%=exercise.reps%></li>
+        <%end%>
+    </ul>
+<%end%>
+    </ul>
