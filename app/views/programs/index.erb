@@ -1,0 +1,7 @@
+<ul>
+    <%i = 0%>
+    <%@programs.each do |program|%>
+        <li><a href="/programs/<%=program.id%>"><%=program.name%></a> by <%=@users[0]%></li>
+        <%i += 1%>
+    <%end%>
+</ul>

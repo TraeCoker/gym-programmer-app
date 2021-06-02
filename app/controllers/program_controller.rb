@@ -1,6 +1,8 @@
 class ProgramController < ApplicationController
 
     get '/programs' do
+        @programs = Program.all
+        @users = @programs.collect{|p| User.find(p.user_id).username}
         erb :'programs/index'
     end 
 
@@ -36,7 +38,7 @@ class ProgramController < ApplicationController
 
     get '/programs/:id' do 
         @program = Program.find(params[:id])
-        
+
         erb :'programs/show'
     end 
 
