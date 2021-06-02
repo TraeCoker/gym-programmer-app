@@ -15,15 +15,12 @@ class ProgramController < ApplicationController
         if params[:update]
             redirect '/programs/new'
         end 
-
-        if params[:days] && clean_exercise_input
             
-            if params[:submit] && params[:workout] != {} && !params[:name].blank?
-
+            if valid_entry?
                 user = User.find(session[:user_id])
                 program = Program.create(name: params[:name], days_per_week: params[:days].count, user_id: user.id) 
 
-                params[:days].each do |day|
+                params[:workout].each do |day, exercise|
                   workout = Workout.new(day_of_week: day, program_id: program.id)
                   workout.exercises.build(params[:workout][day])
                   workout.save
@@ -33,28 +30,27 @@ class ProgramController < ApplicationController
                 session[:days] = []
                 redirect '/programs'
             end 
-        end 
+
         redirect '/programs/new'
     end 
+
 
 
     private 
 
     def clean_exercise_input
-        params[:days].each do |day|
-            #binding.pry
-            exercises = params[:workout][day] 
-            if exercises 
-                exercises.each do |exercise|
-                    exercise.delete_if {|key, value| value.blank?}
-                end  
-                exercises.delete_if &:empty?
-            end
-        end 
-            params[:workout].delete_if {|k, v| v == []}
-            #binding.pry
-            #params[:workout].delete_if &:empty?
+        params[:workout].each do |day, exercise|
+            exercise.each do |hash|
+                hash.delete_if {|k, v| v.blank?} 
+            end   
+            exercise.delete({})
+        end  
+            params[:workout] = params[:workout].reject {|k, v| v == []}
     end
 
+
+    def valid_entry?
+        params[:days] && clean_exercise_input && params[:submit] && params[:workout] != {} && !params[:name].blank?
+    end
 
 end 
