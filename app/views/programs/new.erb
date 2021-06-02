@@ -1,6 +1,7 @@
 
 <form action='/programs' method="POST">
 <select name="days_per_week" id="days_per_week">
+  <option value="<%=session[:days]%>" selected><%=session[:days]%></option>
   <option value="1">1</option>
   <option value="2">2</option>
   <option value="3">3</option>
