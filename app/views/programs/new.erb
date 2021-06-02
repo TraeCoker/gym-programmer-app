@@ -25,9 +25,9 @@
         <%i = 1%>
         <% 9.times do %>
         <label for="exercise"> Excercise <%=i%>:</label>
-        <input type="text" name="<%=day%>[workout][][name]">
-        sets: <input type="text" name="<%=day%>[workout][][sets]">
-        reps: <input type="text" name="<%=day%>[workout][][reps]"><br>
+        <input type="text" name="workout[<%=day%>][][name]">
+        sets: <input type="text" name="workout[<%=day%>][][sets]">
+        reps: <input type="text" name="workout[<%=day%>][][reps]"><br>
         <%i += 1%>
         <%end%>
     <%end%>
