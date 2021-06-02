@@ -8,7 +8,8 @@ class ProgramController < ApplicationController
         erb :'programs/new'
     end 
 
-    post '/programs' do 
+    post '/programs' do
+        binding.pry 
         session[:days] = params[:days]
         if params[:workout] == nil 
             redirect '/programs/new'
