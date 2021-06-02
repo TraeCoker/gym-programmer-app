@@ -18,22 +18,25 @@ class ProgramController < ApplicationController
             
             if valid_entry?
                 user = User.find(session[:user_id])
-                program = Program.create(name: params[:name], days_per_week: params[:days].count, user_id: user.id) 
+                @program = Program.create(name: params[:name], days_per_week: params[:days].count, user_id: user.id) 
 
                 params[:workout].each do |day, exercise|
-                  workout = Workout.new(day_of_week: day, program_id: program.id)
+                  workout = Workout.new(day_of_week: day, program_id: @program.id)
                   workout.exercises.build(params[:workout][day])
                   workout.save
                 end
 
                 session[:program_name] = ""
                 session[:days] = []
-                redirect '/programs'
+                redirect "/programs/#{@program.id}"
             end 
 
         redirect '/programs/new'
     end 
 
+    get '/programs/:id' do 
+        erb :'programs/show'
+    end 
 
 
     private 
