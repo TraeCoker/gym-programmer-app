@@ -1,19 +1,24 @@
 
 <form action='/programs' method="POST">
-<select name="days_per_week" id="days_per_week">
-  <option value="<%=session[:days]%>" selected><%=session[:days]%></option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-</select>
-<input type="submit" value="submit">
-</form>
+  <input type="checkbox" id="monday" name="days[]" value="Monday">
+  <label for="monday">Monday</label><br>
+  <input type="checkbox" id="tuesday" name="days[]" value="Tuesday">
+  <label for="tuesday">Tuesday</label><br>
+  <input type="checkbox" id="wednesday" name="days[]" value="Wednesday">
+  <label for="wednesday">Wednesday</label><br>
+  <input type="checkbox" id="thursday" name="days[]" value="Thursday">
+  <label for="thursday">Thursday</label><br>
+  <input type="checkbox" id="friday" name="days[]" value="Friday">
+  <label for="friday">Friday</label><br>
+  <input type="checkbox" id="saturday" name="days[]" value="Saturday">
+  <label for="saturday">Saturday</label><br>
+  <input type="checkbox" id="sunday" name="days[]" value="Sunday">
+  <label for="sunday">Sunday</label><br>
 <%if session[:days]%>
     <%session[:days].times do%>
-        <p>hello world</p>
+        
     <%end%>
 <%end%>
+
+<input type="submit" value="submit">
+</form>

@@ -9,6 +9,7 @@ class ProgramController < ApplicationController
     end 
 
     post '/programs' do 
+        binding.pry
         session[:days] = params[:days_per_week].to_i
         if params[:workout] == nil 
             redirect '/programs/new'
