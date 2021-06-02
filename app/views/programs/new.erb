@@ -17,7 +17,8 @@
   <input type="checkbox" id="saturday" name="days[]" value="Saturday" <%= 'checked' if session[:days] && session[:days].include?("Saturday") %>>
   <label for="saturday">Saturday</label><br>
   <input type="checkbox" id="sunday" name="days[]" value="Sunday" <%= 'checked' if session[:days] && session[:days].include?("Sunday") %>>
-  <label for="sunday">Sunday</label><br><br>
+  <label for="sunday">Sunday</label><br>
+  <input type="submit" name="update" value="update"><br><br>
 
 <%if session[:days]%>
     <%session[:days].each do |day|%>
@@ -31,7 +32,7 @@
         <%i += 1%>
         <%end%>
     <%end%>
+    <input type="submit" name="submit" value="submit">
 <%end%>
 
-<input type="submit" value="submit">
 </form>
