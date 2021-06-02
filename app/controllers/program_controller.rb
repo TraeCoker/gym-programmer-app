@@ -15,31 +15,45 @@ class ProgramController < ApplicationController
         if params[:update]
             redirect '/programs/new'
         end 
-        
-        if params[:submit]
-            user = User.find(session[:user_id])
-            program = Program.create(name: params[:name], days_per_week: params[:days].count, user_id: user.id) 
 
-            params[:days].each do |day|
-                workout = Workout.new(day_of_week: day, program_id: program.id)
-                exercises = params[:workout][day]
-
-                exercises.each do |exercise|
-                    exercise.delete_if {|key, value| value.blank?}
-                end  
-                exercises.delete_if &:empty?
-
+        if params[:days]
+            clean_exercise_input
+            
+            if params[:submit] && params[:workout] != {} && params[:name]
                 
-                workout.exercises.build(exercises)
-                workout.save
+                user = User.find(session[:user_id])
+                program = Program.create(name: params[:name], days_per_week: params[:days].count, user_id: user.id) 
+
+                params[:days].each do |day|
+                  workout = Workout.new(day_of_week: day, program_id: program.id)
+                  workout.exercises.build(params[:workout][day])
+                  workout.save
+                end
+
                 session[:program_name] = ""
                 session[:days] = []
                 redirect '/programs'
-               else
-               redirect '/programs/new'
-               end
-            end
+            end 
         end 
+        redirect '/programs/new'
     end 
+
+
+    private 
+
+    def clean_exercise_input
+        params[:days].each do |day|
+            exercises = params[:workout][day]
+
+            exercises.each do |exercise|
+                exercise.delete_if {|key, value| value.blank?}
+            end  
+            exercises.delete_if &:empty?
+        end 
+            params[:workout].delete_if {|k, v| v == []}
+            #binding.pry
+            #params[:workout].delete_if &:empty?
+    end
+
 
 end 
