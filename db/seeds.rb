@@ -53,9 +53,9 @@ PHAT = Program.create(name: "PHAT", days_per_week: 5, user_id: 1)
             {"name"=>"Preacher Curls", "sets"=>"3", "reps"=>"10-12", "movement_type" =>"pull"},
             {"name"=>"High Cable Curls", "sets"=>"3", "reps"=>"10-15", "movement_type" =>"pull"},
             {"name"=>"Tricep Extension", "sets"=>"3", "reps"=>"10-12", "movement_type" =>"push"},
-            {"name"=>"Tricep Kickback", "sets"=>"3", "reps"=>"10-15", "movement_type" =>"push"},
-            {"name"=>"", "sets"=>"", "reps"=>"", "movement_type" =>"push"}] 
+            {"name"=>"Tricep Kickback", "sets"=>"3", "reps"=>"10-15", "movement_type" =>"push"}] 
         }
+        
     PHAT_exercises.each do |x|
         workout = Workout.find_by_day_of_week(x.first)
             x.last.each do |x|
