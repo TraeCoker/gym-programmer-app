@@ -35,8 +35,7 @@ PHAT = Program.create(name: "PHAT", days_per_week: 5, user_id: 1)
             {"name"=>"Lat Pull", "sets"=>"2", "reps"=>"15-20", "movement_type" =>"pull"},
             {"name"=>"Seated Shoulder Press", "sets"=>"3", "reps"=>"10-12", "movement_type" =>"push"},
             {"name"=>"Upright Row", "sets"=>"2", "reps"=>"10-15", "movement_type" =>"pull"},
-            {"name"=>"Lateral Raises", "sets"=>"3", "reps"=>"15-20", "movement_type" =>"pull"},
-            {"name"=>"", "sets"=>"", "reps"=>"", "movement_type" =>"push"}],
+            {"name"=>"Lateral Raises", "sets"=>"3", "reps"=>"15-20", "movement_type" =>"pull"}],
             "Thursday"=>
             [{"name"=>"Squat", "sets"=>"4", "reps"=>"6-10", "movement_type" =>"legs"},
             {"name"=>"Hack Squat", "sets"=>"3", "reps"=>"10-12", "movement_type" =>"legs"},
@@ -55,7 +54,7 @@ PHAT = Program.create(name: "PHAT", days_per_week: 5, user_id: 1)
             {"name"=>"Tricep Extension", "sets"=>"3", "reps"=>"10-12", "movement_type" =>"push"},
             {"name"=>"Tricep Kickback", "sets"=>"3", "reps"=>"10-15", "movement_type" =>"push"}] 
         }
-        
+
     PHAT_exercises.each do |x|
         workout = Workout.find_by_day_of_week(x.first)
             x.last.each do |x|
