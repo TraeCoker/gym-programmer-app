@@ -1,7 +1,8 @@
+<h1>Programs</h1>
 <ul>
     <%i = 0%>
     <%@programs.each do |program|%>
-        <li><a href="/programs/<%=program.id%>"><%=program.name%></a> by <%=@users[i]%></li>
+        <li><a href="/programs/<%=program.id%>"><%=program.name%></a> a <%=program.days_per_week%> days a week program by <%=@users[i]%></li>
         <%i += 1%>
     <%end%>
 </ul>
