@@ -29,7 +29,7 @@ class ProgramController < ApplicationController
                 end
 
                 session[:program_name] = ""
-                session[:days] = []
+                session[:days] = nil
                 redirect "/programs/#{@program.id}"
             end 
 
@@ -40,6 +40,14 @@ class ProgramController < ApplicationController
         @program = Program.find(params[:id])
 
         erb :'programs/show'
+    end 
+
+    get '/programs/:id/edit' do 
+        @program = Program.find(params[:id])
+        if @program.user == current_user
+            erb :'programs/edit'
+        end 
+        redirect '/programs'
     end 
 
 
