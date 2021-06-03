@@ -62,3 +62,6 @@ PHAT = Program.create(name: "PHAT", days_per_week: 5, user_id: 1)
             end 
         workout.save 
     end 
+
+    Super_Saiyan = Program.create(name: "Super Saiyan!", days_per_week: 3, user_id: 2)
+    Beast_Mode = Program.create(name: "BEAST MODE", days_per_week: 7, user_id: 3)
