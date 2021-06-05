@@ -44,6 +44,7 @@ class ProgramController < ApplicationController
 
     get '/programs/:id/edit' do 
         @program = Program.find(params[:id])
+        session[:days] = @program.workouts.collect{|w| w.day_of_week}
         if @program.user == current_user
             erb :'programs/edit'
         else
@@ -52,6 +53,32 @@ class ProgramController < ApplicationController
     end 
 
     patch '/programs/:id' do 
+        @program = Program.find(params[:id])
+        session[:days] = params[:days]
+
+
+        if params[:update]
+            redirect "/programs/#{@program.id}/edit"
+        end 
+            
+            if valid_entry?
+                @program.update(name: params[:name], days_per_week: params[:days].count) 
+                if @program.workouts 
+                    @program.workouts.each{|w| w.destroy}
+                end 
+
+                params[:workout].each do |day, exercise|
+                  workout = Workout.new(day_of_week: day, program_id: @program.id)
+                  workout.exercises.build(params[:workout][day])
+                  workout.save
+                end
+
+                session[:program_name] = ""
+                session[:days] = nil
+                redirect "/programs/#{@program.id}"
+            end 
+
+        redirect "/programs/#{@program.id}/edit"
 
     end 
 
