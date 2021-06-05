@@ -51,6 +51,9 @@ class ProgramController < ApplicationController
         end 
     end 
 
+    patch '/programs/:id' do 
+
+    end 
 
     private 
 
