@@ -46,8 +46,9 @@ class ProgramController < ApplicationController
         @program = Program.find(params[:id])
         if @program.user == current_user
             erb :'programs/edit'
+        else
+            redirect '/programs'
         end 
-        redirect '/programs'
     end 
 
 
