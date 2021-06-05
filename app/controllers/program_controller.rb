@@ -44,7 +44,7 @@ class ProgramController < ApplicationController
 
     get '/programs/:id/edit' do 
         @program = Program.find(params[:id])
-        session[:days] = @program.workouts.collect{|w| w.day_of_week}
+        #session[:days] = @program.workouts.collect{|w| w.day_of_week}
         if @program.user == current_user
             erb :'programs/edit'
         else

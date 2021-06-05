@@ -1,6 +1,6 @@
 <h1>Editing: <%=@program.name%></h1>
 <form action="/programs/<%=@program.id%>" method="POST">
-
+   <input id="hidden" type="hidden" name="_method" value="patch">
   <label for="name">Program Name:</label>
   <input type="text" name="name" value="<%=@program.name%>"><br><br>
 
