@@ -1,3 +1,28 @@
 <h1><%=@user.username%></h1>
-<h2>Current Program<h2>
+<%if @current_program%>
+<h3>Current Program:<h3>
 <h3><a href="/programs/<%=@current_program.id%>"><%=@current_program.name%></a></h3>
+<br>
+<h4>Today's Workout:</h4>
+<%if @todays_workout%>
+<h3><%=@todays_workout.day_of_week%></h3><br>
+<ul><%@todays_workout.exercises.each do |exercise|%>
+        <li><%=exercise.name%> <%=exercise.sets%> x <%=exercise.reps%></li>
+        <%end%>
+    </ul><br>
+    <%else%>
+    <h3><%=@days_of_week[Time.now.wday]%></h3> - Off<br>
+    <%end%>
+    <br><br>
+    <h5>All Programs by <%=@user.username%></h5>
+        <ul>
+        <%@user.programs.each do |program|%>
+        <li><a href="/programs/<%=program.id%>"><%=program.name%></a></li>
+        <%end%></ul>
+        
+<%else%>
+    <h5> No Programs Yet! </h5>
+<%end%>
+
+
+
