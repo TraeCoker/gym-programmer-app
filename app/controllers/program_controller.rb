@@ -79,8 +79,14 @@ class ProgramController < ApplicationController
             end 
 
         redirect "/programs/#{@program.id}/edit"
+    end
 
-    end 
+    delete '/programs/:id' do 
+        @program = Program.find(params[:id])
+        @program.delete 
+        
+        redirect '/programs'
+    end
 
     private 
 
