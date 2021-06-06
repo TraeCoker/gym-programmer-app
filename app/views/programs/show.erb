@@ -9,9 +9,14 @@
     </ul>
 <%end%>
     </ul>
+    <br>
     <%if @program.user == current_user%>
-        <form action="/programs/<%=@program/id%>/edit">
+        <form action="/programs/<%=@program.id%>/edit">
         <input type="submit" value="Edit Program" />
-        </form><br>
+        </form>
+        <form method="post" action="/programs/<%= @program.id %>">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Program">
+        </form>
     <%end%>
         
