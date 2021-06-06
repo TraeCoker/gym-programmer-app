@@ -9,3 +9,9 @@
     </ul>
 <%end%>
     </ul>
+    <%if @program.user == current_user%>
+        <form action="/programs/<%=@program/id%>/edit">
+        <input type="submit" value="Edit Program" />
+        </form><br>
+    <%end%>
+        
