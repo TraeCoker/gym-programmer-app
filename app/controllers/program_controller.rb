@@ -90,6 +90,11 @@ class ProgramController < ApplicationController
 
     private 
 
+    def redirect_if_not_logged_in
+        redirect '/login' if !logged_in?
+    end 
+        
+
     def clean_exercise_input
         params[:workout].each do |day, exercise|
             exercise.each do |hash|
