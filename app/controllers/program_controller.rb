@@ -2,6 +2,7 @@ class ProgramController < ApplicationController
 
     get '/programs' do
         redirect_if_not_logged_in
+        
         @programs = Program.all
         @users = @programs.collect{|p| User.find(p.user_id).username}
         erb :'programs/index'
@@ -9,11 +10,13 @@ class ProgramController < ApplicationController
 
     get '/programs/new' do 
         redirect_if_not_logged_in
+
         erb :'programs/new'
     end 
 
     post '/programs' do
         redirect_if_not_logged_in
+
         session[:program_name] = params[:name]
         session[:days] = params[:days]
       
@@ -41,6 +44,7 @@ class ProgramController < ApplicationController
 
     get '/programs/:id' do 
         redirect_if_not_logged_in
+
         @program = Program.find(params[:id])
 
         erb :'programs/show'
@@ -48,6 +52,8 @@ class ProgramController < ApplicationController
 
     get '/programs/:id/edit' do 
         redirect_if_not_logged_in
+        redirect_if_not_authorized
+
         @program = Program.find(params[:id])
         #session[:days] = @program.workouts.collect{|w| w.day_of_week}
         if @program.user == current_user
@@ -59,6 +65,8 @@ class ProgramController < ApplicationController
 
     patch '/programs/:id' do 
         redirect_if_not_logged_in
+        redirect_if_not_authorized
+
         @program = Program.find(params[:id])
         session[:days] = params[:days]
 
@@ -89,6 +97,8 @@ class ProgramController < ApplicationController
 
     delete '/programs/:id' do
         redirect_if_not_logged_in 
+        redirect_if_not_authorized
+
         @program = Program.find(params[:id])
         @program.delete 
         
@@ -96,7 +106,11 @@ class ProgramController < ApplicationController
     end
 
     private 
-    
+
+    def redirect_if_not_authorized
+        redirect '/programs' if @program.user != current_user
+    end 
+
     def clean_exercise_input
         params[:workout].each do |day, exercise|
             exercise.each do |hash|
