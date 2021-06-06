@@ -22,7 +22,7 @@
 
 <%if session[:days]%>
     <%session[:days].each do |day|%>
-        <h3><%=day%></h3>
+        <h3><%=day%></h3> 
         <%i = 1%>
         <% 9.times do %>
         <label for="exercise"> Excercise <%=i%>:</label>

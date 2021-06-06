@@ -37,6 +37,10 @@ class UserController < ApplicationController
     get '/user/:username' do 
         redirect_if_not_logged_in
         @user = User.find_by_username(params[:username])
+        @current_program = @user.programs.last
+        @days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        @workout_days = @current_program.workouts.each{|w| w.day_of_week}
+        
 
         erb :'users/show'
     end
