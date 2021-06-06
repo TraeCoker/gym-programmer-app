@@ -52,9 +52,11 @@ class ProgramController < ApplicationController
 
     get '/programs/:id/edit' do 
         redirect_if_not_logged_in
+        
+        @program = Program.find(params[:id])
         redirect_if_not_authorized
 
-        @program = Program.find(params[:id])
+        
         #session[:days] = @program.workouts.collect{|w| w.day_of_week}
         if @program.user == current_user
             erb :'programs/edit'
@@ -65,9 +67,10 @@ class ProgramController < ApplicationController
 
     patch '/programs/:id' do 
         redirect_if_not_logged_in
-        redirect_if_not_authorized
 
         @program = Program.find(params[:id])
+        redirect_if_not_authorized
+
         session[:days] = params[:days]
 
 
@@ -97,9 +100,10 @@ class ProgramController < ApplicationController
 
     delete '/programs/:id' do
         redirect_if_not_logged_in 
+        @program = Program.find(params[:id])
         redirect_if_not_authorized
 
-        @program = Program.find(params[:id])
+        
         @program.delete 
         
         redirect '/programs'
