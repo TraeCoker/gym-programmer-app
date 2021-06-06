@@ -19,6 +19,9 @@
         <input type="submit" value="Delete Program">
         </form>
     <%end%>
-<form action="/logout" method="post">
-    <input type="submit" value="Log Out" />
-</form>
+<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href='/programs'>Programs</a>
+  <a href="/programs/new">New Program</a>
+  <a href='/user/<%=current_user.username%>'>My Profile</a>
+</div>
