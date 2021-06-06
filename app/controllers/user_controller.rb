@@ -30,11 +30,12 @@ class UserController < ApplicationController
     end 
 
     post '/logout' do 
-        sessions.clear
+        session.clear
         redirect '/'
     end 
 
     get '/user/:username' do 
+        redirect_if_not_logged_in
         @user = User.find_by_username(params[:username])
 
         erb :'users/show'
