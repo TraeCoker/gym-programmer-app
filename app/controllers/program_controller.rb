@@ -1,16 +1,19 @@
 class ProgramController < ApplicationController
 
     get '/programs' do
+        redirect_if_not_logged_in
         @programs = Program.all
         @users = @programs.collect{|p| User.find(p.user_id).username}
         erb :'programs/index'
     end 
 
     get '/programs/new' do 
+        redirect_if_not_logged_in
         erb :'programs/new'
     end 
 
     post '/programs' do
+        redirect_if_not_logged_in
         session[:program_name] = params[:name]
         session[:days] = params[:days]
       
@@ -37,12 +40,14 @@ class ProgramController < ApplicationController
     end 
 
     get '/programs/:id' do 
+        redirect_if_not_logged_in
         @program = Program.find(params[:id])
 
         erb :'programs/show'
     end 
 
     get '/programs/:id/edit' do 
+        redirect_if_not_logged_in
         @program = Program.find(params[:id])
         #session[:days] = @program.workouts.collect{|w| w.day_of_week}
         if @program.user == current_user
@@ -53,6 +58,7 @@ class ProgramController < ApplicationController
     end 
 
     patch '/programs/:id' do 
+        redirect_if_not_logged_in
         @program = Program.find(params[:id])
         session[:days] = params[:days]
 
@@ -81,7 +87,8 @@ class ProgramController < ApplicationController
         redirect "/programs/#{@program.id}/edit"
     end
 
-    delete '/programs/:id' do 
+    delete '/programs/:id' do
+        redirect_if_not_logged_in 
         @program = Program.find(params[:id])
         @program.delete 
         
