@@ -92,16 +92,9 @@ class ProgramController < ApplicationController
 
                 @current_program_days = @program.workouts.collect{|w| w.day_of_week}
 
-               # binding.pry 
-                #if @program.workouts 
-                  #  binding.pry
-                    #@program.workouts.each{|w| w.destroy}
-                #end 
-
                 params[:workout].each do |day, exercise|
                     if @current_program_days.include?(day)
                         workout = Workout.find_by(day_of_week: day)
-                        #binding.pry 
                         i = 0
                         workout.exercises.each do |exercise|
                             if params[:workout][day][i]
