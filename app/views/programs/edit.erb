@@ -24,6 +24,19 @@
 
 <%if session[:days]%>
     <%session[:days].each do |day|%>
+        <%if @current_program_days.include?(day)%>
+            <%@workout = @program.workouts.find_by(day_of_week: day)%>
+             <h3><%=day%></h3>
+            <%i = 1%>
+            <% 9.times do %>
+            <label for="exercise"> Excercise <%=i%>:</label>
+            <input type="text" name="workout[<%=day%>][][name]" value="<%=@workout.exercises.all[i -1].name if @workout.exercises.all[i -1]%>">
+            sets: <input type="text" name="workout[<%=day%>][][sets]" value="<%=@workout.exercises.all[i -1].sets if @workout.exercises.all[i -1]%>">
+            reps: <input type="text" name="workout[<%=day%>][][reps]" value="<%=@workout.exercises.all[i -1].reps if @workout.exercises.all[i -1]%>"><br>
+            <%i += 1%>
+            <%end%>
+        <%else%>
+
         <h3><%=day%></h3>
         <%i = 1%>
         <% 9.times do %>
@@ -32,6 +45,7 @@
         sets: <input type="text" name="workout[<%=day%>][][sets]">
         reps: <input type="text" name="workout[<%=day%>][][reps]"><br>
         <%i += 1%>
+        <%end%>
         <%end%>
     <%end%>
     <input type="submit" name="submit" value="submit">

@@ -56,12 +56,13 @@ class ProgramController < ApplicationController
         @program = Program.find(params[:id])
         redirect_if_not_authorized
 
+        @current_program_days = @program.workouts.collect{|w| w.day_of_week}
         if session[:update]
             session[:days] = session[:update]
         else 
-        session[:days] = @program.workouts.collect{|w| w.day_of_week}
+        session[:days] = @current_program_days
         end 
-        
+
         if @program.user == current_user
             erb :'programs/edit'
         else
