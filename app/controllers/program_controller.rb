@@ -86,18 +86,45 @@ class ProgramController < ApplicationController
             
             if valid_entry?
                 @program.update(name: params[:name], days_per_week: params[:days].count) 
-                if @program.workouts 
-                    @program.workouts.each{|w| w.destroy}
+                @program.workouts.each do |workout|
+                    workout.destroy if !params[:days].include?(workout.day_of_week)
                 end 
 
+                @current_program_days = @program.workouts.collect{|w| w.day_of_week}
+
+               # binding.pry 
+                #if @program.workouts 
+                  #  binding.pry
+                    #@program.workouts.each{|w| w.destroy}
+                #end 
+
                 params[:workout].each do |day, exercise|
-                  workout = Workout.new(day_of_week: day, program_id: @program.id)
-                  workout.exercises.build(params[:workout][day])
-                  workout.save
+                    if @current_program_days.include?(day)
+                        workout = Workout.find_by(day_of_week: day)
+                        #binding.pry 
+                        i = 0
+                        workout.exercises.each do |exercise|
+                            if params[:workout][day][i]
+                            exercise.update(params[:workout][day][i])
+                            else 
+                            exercise.destroy 
+                            end 
+                            i += 1
+                        end 
+                        new_workouts = params[:workout][day][workout.exercises.count..-1]
+                        workout.exercises.build(new_workouts) if new_workouts
+                        workout.save
+                    else 
+                         workout = Workout.new(day_of_week: day, program_id: @program.id)
+                         workout.exercises.build(params[:workout][day])
+                         workout.save
+                    end 
+        
                 end
 
                 session[:program_name] = ""
                 session[:days] = nil
+                session[:update] = nil
                 redirect "/programs/#{@program.id}"
             end 
 
