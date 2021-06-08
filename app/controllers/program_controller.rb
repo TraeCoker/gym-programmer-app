@@ -4,7 +4,7 @@ class ProgramController < ApplicationController
         redirect_if_not_logged_in
         
         @programs = Program.all
-        @users = @programs.collect{|p| User.find(p.user_id).username}
+        @users = @programs.collect{|p| User.find(p.user_id).username}.reverse
         erb :'programs/index'
     end 
 
