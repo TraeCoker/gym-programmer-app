@@ -21,6 +21,7 @@
   <label for="sunday">Sunday</label><br>
   <input type="submit" name="update" value="update"><br><br>
 
+
 <%if session[:days]%>
     <%session[:days].each do |day|%>
         <h3><%=day%></h3>
