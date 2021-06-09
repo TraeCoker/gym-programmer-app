@@ -1,6 +1,7 @@
 <div class="wrapper">
     <h1><%=@program.name%></h2>
     <h2>by <a href="/user/<%=@program.user.username%>"><%=@program.user.username%></a></h2>
+
     <ul>
     <%@program.workouts.each do |workout|%>
         <h3><%=workout.day_of_week%></h3>
@@ -13,11 +14,11 @@
         <br>
         <%if @program.user == current_user%>
             <form action="/programs/<%=@program.id%>/edit">
-            <input type="submit" value="Edit Program" />
+            <input class="button" style="float: left" type="submit" value="Edit Program" />
             </form>
             <form method="post" action="/programs/<%= @program.id %>">
             <input id="hidden" type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="Delete Program">
+            <input class="button" type="submit" value="Delete Program">
             </form>
         <%end%>
 </div>
