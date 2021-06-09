@@ -1,7 +1,11 @@
-<h1>Welcome to GYM PROGRAMMER</h2>
-<% if !logged_in?%>
-<h3>Please log in or sign up</h3>
-<p><a href='/signup'>Sign Up</a> | <a href='/login'>Log In</a></p>
-<%else%>
-<h3>Welcome <%=current_user.username%>!</h3>
-<%end%>
+<%images = [1,2,3,4]%>
+<div class="w3-display-container w3-content" style="max-width:1500px;">
+<img class="w3-image" src="/images/gym<%=images.sample%>.jpg" alt="Gym Programmer" width="100%">
+<div class="w3-display-middle w3-margin-top w3-center">
+<h1 class="w3-xxlarge w3-text-white w3-wide">
+<span class="w3-padding  w3-opacity-min"><b>GYM</b></span>
+<span class="w3-hide-small w3-text-light-grey">Programmer</span>
+</h1>
+</div>
+</div>
+</div>
