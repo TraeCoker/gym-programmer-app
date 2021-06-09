@@ -1,22 +1,23 @@
-<h1><%=@program.name%></h2>
-<h2>by <a href="/user/<%=@program.user.username%>"><%=@program.user.username%></a></h2>
-<ul>
-<%@program.workouts.each do |workout|%>
-    <h3><%=workout.day_of_week%></h3>
-    <ul><%workout.exercises.each do |exercise|%>
-        <li><%=exercise.name%> <%=exercise.sets%> x <%=exercise.reps%></li>
-        <%end%>
-    </ul>
-<%end%>
-    </ul>
-    <br>
-    <%if @program.user == current_user%>
-        <form action="/programs/<%=@program.id%>/edit">
-        <input type="submit" value="Edit Program" />
-        </form>
-        <form method="post" action="/programs/<%= @program.id %>">
-        <input id="hidden" type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Delete Program">
-        </form>
+<div class="wrapper">
+    <h1><%=@program.name%></h2>
+    <h2>by <a href="/user/<%=@program.user.username%>"><%=@program.user.username%></a></h2>
+    <ul>
+    <%@program.workouts.each do |workout|%>
+        <h3><%=workout.day_of_week%></h3>
+        <ul><%workout.exercises.each do |exercise|%>
+            <li><%=exercise.name%> <%=exercise.sets%> x <%=exercise.reps%></li>
+            <%end%>
+        </ul>
     <%end%>
-
+        </ul>
+        <br>
+        <%if @program.user == current_user%>
+            <form action="/programs/<%=@program.id%>/edit">
+            <input type="submit" value="Edit Program" />
+            </form>
+            <form method="post" action="/programs/<%= @program.id %>">
+            <input id="hidden" type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete Program">
+            </form>
+        <%end%>
+</div>

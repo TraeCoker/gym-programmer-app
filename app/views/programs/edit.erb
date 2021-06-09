@@ -1,54 +1,56 @@
-<h1>Editing: <%=@program.name%></h1>
-<form action="/programs/<%=@program.id%>" method="POST">
-   <input id="hidden" type="hidden" name="_method" value="patch">
-  <label for="name">Program Name:</label>
-  <input type="text" name="name" value="<%=@program.name%>"><br><br>
+<div class="wrapper">
+    <h1>Editing: <%=@program.name%></h1>
+    <form action="/programs/<%=@program.id%>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label for="name">Program Name:</label>
+    <input type="text" name="name" value="<%=@program.name%>"><br><br>
 
-  <label for="checkbox">Choose days per week:</label><br>
-  <input type="checkbox" id="monday" name="days[]" value="Monday" <%= 'checked' if session[:days] && session[:days].include?("Monday") %>>
-  <label for="monday">Monday</label><br>
-  <input type="checkbox" id="tuesday" name="days[]" value="Tuesday" <%= 'checked' if session[:days] && session[:days].include?("Tuesday") %>>
-  <label for="tuesday">Tuesday</label><br>
-  <input type="checkbox" id="wednesday" name="days[]" value="Wednesday" <%= 'checked' if session[:days] &&  session[:days].include?("Wednesday") %>>
-  <label for="wednesday">Wednesday</label><br>
-  <input type="checkbox" id="thursday" name="days[]" value="Thursday" <%= 'checked' if session[:days] && session[:days].include?("Thursday") %>>
-  <label for="thursday">Thursday</label><br>
-  <input type="checkbox" id="friday" name="days[]" value="Friday" <%= 'checked' if session[:days] && session[:days].include?("Friday") %>>
-  <label for="friday">Friday</label><br>
-  <input type="checkbox" id="saturday" name="days[]" value="Saturday" <%= 'checked' if session[:days] && session[:days].include?("Saturday") %>>
-  <label for="saturday">Saturday</label><br>
-  <input type="checkbox" id="sunday" name="days[]" value="Sunday" <%= 'checked' if session[:days] && session[:days].include?("Sunday") %>>
-  <label for="sunday">Sunday</label><br>
-  <input type="submit" name="update" value="update"><br><br>
+    <label for="checkbox">Choose days per week:</label><br>
+    <input type="checkbox" id="monday" name="days[]" value="Monday" <%= 'checked' if session[:days] && session[:days].include?("Monday") %>>
+    <label for="monday">Monday</label><br>
+    <input type="checkbox" id="tuesday" name="days[]" value="Tuesday" <%= 'checked' if session[:days] && session[:days].include?("Tuesday") %>>
+    <label for="tuesday">Tuesday</label><br>
+    <input type="checkbox" id="wednesday" name="days[]" value="Wednesday" <%= 'checked' if session[:days] &&  session[:days].include?("Wednesday") %>>
+    <label for="wednesday">Wednesday</label><br>
+    <input type="checkbox" id="thursday" name="days[]" value="Thursday" <%= 'checked' if session[:days] && session[:days].include?("Thursday") %>>
+    <label for="thursday">Thursday</label><br>
+    <input type="checkbox" id="friday" name="days[]" value="Friday" <%= 'checked' if session[:days] && session[:days].include?("Friday") %>>
+    <label for="friday">Friday</label><br>
+    <input type="checkbox" id="saturday" name="days[]" value="Saturday" <%= 'checked' if session[:days] && session[:days].include?("Saturday") %>>
+    <label for="saturday">Saturday</label><br>
+    <input type="checkbox" id="sunday" name="days[]" value="Sunday" <%= 'checked' if session[:days] && session[:days].include?("Sunday") %>>
+    <label for="sunday">Sunday</label><br>
+    <input type="submit" name="update" value="update"><br><br>
 
 
-<%if session[:days]%>
-    <%session[:days].each do |day|%>
-        <%if @current_program_days.include?(day)%>
-            <%@workout = @program.workouts.find_by(day_of_week: day)%>
-             <h3><%=day%></h3>
+    <%if session[:days]%>
+        <%session[:days].each do |day|%>
+            <%if @current_program_days.include?(day)%>
+                <%@workout = @program.workouts.find_by(day_of_week: day)%>
+                <h3><%=day%></h3>
+                <%i = 1%>
+                <% 9.times do %>
+                <label for="exercise"> Excercise <%=i%>:</label>
+                <input type="text" name="workout[<%=day%>][][name]" value="<%=@workout.exercises.all[i -1].name if @workout.exercises.all[i -1]%>">
+                sets: <input type="text" name="workout[<%=day%>][][sets]" value="<%=@workout.exercises.all[i -1].sets if @workout.exercises.all[i -1]%>">
+                reps: <input type="text" name="workout[<%=day%>][][reps]" value="<%=@workout.exercises.all[i -1].reps if @workout.exercises.all[i -1]%>"><br>
+                <%i += 1%>
+                <%end%>
+            <%else%>
+
+            <h3><%=day%></h3>
             <%i = 1%>
             <% 9.times do %>
             <label for="exercise"> Excercise <%=i%>:</label>
-            <input type="text" name="workout[<%=day%>][][name]" value="<%=@workout.exercises.all[i -1].name if @workout.exercises.all[i -1]%>">
-            sets: <input type="text" name="workout[<%=day%>][][sets]" value="<%=@workout.exercises.all[i -1].sets if @workout.exercises.all[i -1]%>">
-            reps: <input type="text" name="workout[<%=day%>][][reps]" value="<%=@workout.exercises.all[i -1].reps if @workout.exercises.all[i -1]%>"><br>
+            <input type="text" name="workout[<%=day%>][][name]">
+            sets: <input type="text" name="workout[<%=day%>][][sets]">
+            reps: <input type="text" name="workout[<%=day%>][][reps]"><br>
             <%i += 1%>
             <%end%>
-        <%else%>
-
-        <h3><%=day%></h3>
-        <%i = 1%>
-        <% 9.times do %>
-        <label for="exercise"> Excercise <%=i%>:</label>
-        <input type="text" name="workout[<%=day%>][][name]">
-        sets: <input type="text" name="workout[<%=day%>][][sets]">
-        reps: <input type="text" name="workout[<%=day%>][][reps]"><br>
-        <%i += 1%>
+            <%end%>
         <%end%>
-        <%end%>
+        <input type="submit" name="submit" value="submit">
     <%end%>
-    <input type="submit" name="submit" value="submit">
-<%end%>
 
-</form>
+    </form>
+</div>
