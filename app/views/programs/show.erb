@@ -1,4 +1,5 @@
 <div class="wrapper">
+ <div style="text-align: center">
     <h1><%=@program.name%></h2>
     <h2>by <a href="/user/<%=@program.user.username%>"><%=@program.user.username%></a></h2>
 
@@ -8,17 +9,19 @@
         <ul><%workout.exercises.each do |exercise|%>
             <li><%=exercise.name%> <%=exercise.sets%> x <%=exercise.reps%></li>
             <%end%>
+            <br>
         </ul>
     <%end%>
         </ul>
         <br>
         <%if @program.user == current_user%>
             <form action="/programs/<%=@program.id%>/edit">
-            <input class="button" style="float: left" type="submit" value="Edit Program" />
+            <input class="button" type="submit" value="Edit Program" />
             </form>
             <form method="post" action="/programs/<%= @program.id %>">
             <input id="hidden" type="hidden" name="_method" value="DELETE">
-            <input class="button" type="submit" value="Delete Program">
+            <input class="button"  type="submit" value="Delete Program">
             </form>
         <%end%>
+    </div>
 </div>
