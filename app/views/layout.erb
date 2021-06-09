@@ -1,41 +1,51 @@
 <!DOCTYPE html>
-<html>
-<meta charset="UTF-8">
-<title>GYM Programmer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<body>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
-<%if logged_in?%>
-<!-- Navbar (Sits on top) -->
-<div class="w3-top w3-bar w3-dark-grey w3-wide w3-padding w3-card">
-<a href="/" class="w3-bar-item w3-button"><b>GYM Programmer</b></a>
-<div class="w3-right w3-hide-small">
-<!-- Float links to the right. Hide them on small screens -->
+    <title>GymProgrammer</title>
 
-<a href='/programs' class="w3-bar-item w3-button">Programs</a>
-<a href='/user/<%=current_user.username%>' class="w3-bar-item w3-button">My profile</a>
-<a href="/programs/new" class="w3-bar-item w3-button">New Program</a>
-<a href='/logout' class="w3-bar-item w3-button">Log Out</a>
-</div>
-</div>
-<%else%>
-<div class="w3-top w3-bar w3-dark-grey w3-wide w3-padding w3-card">
-<a href="/" class="w3-bar-item w3-button"><b>GYM Programmer</b></a>
-<div class="w3-right w3-hide-small">
-<a href='/signup' class="w3-bar-item w3-button">Sign Up</a>
-<a href='/login' class="w3-bar-item w3-button">Log In</a>
-</div>
-</div>
-<%end%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Page Start -->
-<div id="home" class="w3-content" style="max-width:1564px">
-<div id="menu" class="w3-container w3-black w3-xxlarge w3-padding-64">
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+  <%if logged_in?%>
+      <div class="topnav">
+      <a class="active" href="/">GYM Programmer</a>
+      <a href='/programs'>Programs</a>
+      <a href="/programs/new">New Program</a>
+      <a href='/user/<%=current_user.username%>'>My Profile</a>
+      <a href='/logout'>Log Out</a>
+      </div>
+      <%else%>
+       <div class="topnav">
+      <a class="active" href="/">GYM Programmer</a>
+      <a href='/signup'>Sign Up</a>
+      <a href="/login">Log In</a>
+      </div>
 
-<%=yield%>
-<!-- Page End -->
-</div>
+    <%end %>
+       <div class="wrapper">
 
-</body>
+    
+
+        <%= yield %>
+
+        </div>
+        <footer class="branding">
+        <small>&copy; 2021 <strong>GymProgrammer</strong></small>
+      </footer>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <!--[if lt IE 7]>
+      <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+      <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+    <![endif]-->
+  </body>
 </html>
