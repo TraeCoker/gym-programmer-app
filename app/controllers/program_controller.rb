@@ -3,8 +3,8 @@ class ProgramController < ApplicationController
     get '/programs' do
         redirect_if_not_logged_in
         
-        @programs = Program.all
-        @users = @programs.collect{|p| User.find(p.user_id).username}.reverse
+        @programs = Program.all.reverse
+        @users = @programs.collect{|p| User.find(p.user_id).username}
         erb :'programs/index'
     end 
 
