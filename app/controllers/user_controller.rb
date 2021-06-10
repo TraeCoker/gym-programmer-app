@@ -8,15 +8,13 @@ class UserController < ApplicationController
     end 
 
     post '/signup' do 
-        user = User.new(params)
+        @user = User.new(params)
          
-        if user.save
-            session[:user_id] = user.id
-            redirect "/user/#{user.username}"
+        if @user.save
+            session[:user_id] = @user.id
+            redirect "/user/#{@user.username}"
         else 
-            error_key = user.errors.messages.keys[0]
-            error_message = user.errors.messages[error_key][0]
-            flash[:message] = error_key.to_s + " " + error_message
+            retrieve_error_message
             redirect "/signup"
         end 
     end 
@@ -53,4 +51,11 @@ class UserController < ApplicationController
         erb :'users/show'
     end
 
+    private 
+
+    def retrieve_error_message
+        error_key = @user.errors.messages.keys[0]
+        error_message = @user.errors.messages[error_key][0]
+        flash[:message] = error_key.to_s + " " + error_message
+    end 
 end 
