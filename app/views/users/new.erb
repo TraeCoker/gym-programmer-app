@@ -2,7 +2,7 @@
     <h1>Create New User</h1>
     <br>
     <% if flash.has?(:message) %>
-        <p><%= flash[:message] %></p>
+        <div class="isa_error"><%= flash[:message] %></div>
         <br>
     <% end %> 
     <form action="/signup" method="POST">

@@ -2,7 +2,7 @@
     <h1>User Log In</h1>
     <br>
      <% if flash.has?(:message) %>
-        <p><%= flash[:message] %></p>
+        <div class="isa_error"><%= flash[:message] %></div>
         <br>
     <% end %>
     <br>
