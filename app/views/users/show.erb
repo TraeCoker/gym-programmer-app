@@ -1,5 +1,10 @@
 <div class="wrapper">
     <h1><%=@user.username%></h1>
+    <form method='POST' action='/users/<%@user.username%>' enctype="multipart/form-data">
+    <input type='file' name='file' >
+    <button class ="button" type='submit'> Add</button>
+    </form>
+
     <div style="text-align: center">
         <%if @current_program%>
         <h3>Current Program:<h3>
