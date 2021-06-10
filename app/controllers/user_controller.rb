@@ -1,5 +1,7 @@
+require 'rack-flash'
 class UserController < ApplicationController
-  use Rack::Flash
+    use Rack::Flash
+
 
     get '/signup' do 
         erb :'users/new'
@@ -12,7 +14,6 @@ class UserController < ApplicationController
             session[:user_id] = user.id
             redirect "/user/#{user.username}"
         else 
-            binding.pry 
             error_key = user.errors.messages.keys[0]
             error_message = user.errors.messages[error_key][0]
             flash[:message] = error_key.to_s + " " + error_message
