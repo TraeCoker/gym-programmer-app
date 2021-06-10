@@ -54,7 +54,7 @@ class UserController < ApplicationController
 
     post '/user/:username' do 
         binding.pry 
-        user = current_user
+        user =  User.find_by_username(params[:username])
         user.avatar = params[:file]
 
         redirect "/user/#{user.username}"

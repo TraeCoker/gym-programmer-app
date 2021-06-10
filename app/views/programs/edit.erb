@@ -30,10 +30,11 @@
                 <h3><%=day%></h3>
                 <%i = 1%>
                 <% 9.times do %>
+                <%exercise = @workout.exercises.all[i -1]%>
                 <label for="exercise"> Excercise <%=i%>:</label>
-                <input type="text" name="workout[<%=day%>][][name]" value="<%=@workout.exercises.all[i -1].name if @workout.exercises.all[i -1]%>">
-                sets: <input type="text" name="workout[<%=day%>][][sets]" value="<%=@workout.exercises.all[i -1].sets if @workout.exercises.all[i -1]%>">
-                reps: <input type="text" name="workout[<%=day%>][][reps]" value="<%=@workout.exercises.all[i -1].reps if @workout.exercises.all[i -1]%>"><br>
+                <input type="text" name="workout[<%=day%>][][name]" value="<%=exercise.name if exercise%>">
+                sets: <input type="text" name="workout[<%=day%>][][sets]" value="<%=exercise.sets if exercise%>">
+                reps: <input type="text" name="workout[<%=day%>][][reps]" value="<%=exercise.reps if exercise%>"><br>
                 <%i += 1%>
                 <%end%>
             <%else%>
