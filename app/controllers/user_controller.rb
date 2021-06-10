@@ -52,7 +52,13 @@ class UserController < ApplicationController
         erb :'users/show'
     end
 
-    
+    post '/user/:username' do 
+        binding.pry 
+        user = current_user
+        user.avatar = params[:file]
+
+        redirect "/user/#{user.username}"
+    end 
 
 
     private 
