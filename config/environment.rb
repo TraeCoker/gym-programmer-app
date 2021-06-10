@@ -1,5 +1,7 @@
 ENV['SINATRA_ENV'] ||= "development"
 
+
+
 require 'bundler/setup'
 Bundler.require(:default, ENV['SINATRA_ENV'])
 require 'dotenv/load'
@@ -11,3 +13,10 @@ ActiveRecord::Base.establish_connection(
 
 require './app/controllers/application_controller'
 require_all 'app'
+
+require "carrierwave"
+require "carrierwave/orm/activerecord"
+
+CarrierWave.configure do |config|
+  config.root = File.dirname(__FILE__) + "/public"
+end
