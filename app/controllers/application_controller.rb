@@ -7,11 +7,16 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, ENV['SESSION_SECRET']
+    set :show_exceptions, false
   end
 
   get "/" do
     erb :welcome 
   end
+
+  error ActiveRecord::RecordNotFound do 
+    redirect '/'
+  end 
 
   helpers do 
     def current_user 
