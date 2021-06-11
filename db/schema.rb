@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2021_05_31_213038) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.string "avatar"
   end
 
   create_table "workout_exercises", force: :cascade do |t|
