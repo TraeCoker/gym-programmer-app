@@ -52,7 +52,7 @@ class UserController < ApplicationController
         erb :'users/show'
     end
 
-    
+
     private 
 
     def retrieve_error_message

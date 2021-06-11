@@ -78,7 +78,7 @@ class ProgramController < ApplicationController
 
         session[:days] = params[:days]
  
-
+        #binding.pry 
         if params[:update]
             session[:update] = params[:days]
             redirect "/programs/#{@program.id}/edit"
