@@ -20,6 +20,9 @@
                 <li><%=exercise.name%> <%=exercise.sets%> x <%=exercise.reps%></li>
                 <%end%>
             </ul><br>
+                <form action='/user/<%=current_user.username%>' method="POST">
+                 <input class="button" type="submit" name="<%=Time.now%>" value="Workout Complete">
+                 </form>
             <%else%>
             <h3><%=@days_of_week[Time.now.wday]%></h3> - Off<br>
             <%end%>
