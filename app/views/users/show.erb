@@ -1,8 +1,14 @@
 <div class="wrapper">
+  <div class ="left-column">
     <h1><%=@user.username%></h1>
     <p><%=@achievement%></p>
+    <p>Completed Workouts: <%=@user.completed_workouts%></p>
+    <p>Rank: #<%=@rank%> on site</p>
+    <p>Member since: <%=@user.date_joined%></p>
+    <br><br><br><br><br><br><br>
+  </div>
    
-    <div style="text-align: center">
+    <div class="middle-column" style="text-align: center">
         <%if @current_program%>
         <h3>Current Program:<h3>
         <h3><a href="/programs/<%=@current_program.id%>"><%=@current_program.name%></a></h3>
@@ -25,8 +31,9 @@
                 <%end%></ul>
                 
         <%else%>
-            <h2> No Programs Yet! </h2>
+            <h3> No Programs Yet! </h3>
             <a href="/programs/new"><button class="button" >Create New Program</button></a>
+            <br><br><br><br><br><br><br><br>
         <%end%>
     </div>
 </div>

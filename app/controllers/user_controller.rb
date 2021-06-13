@@ -69,6 +69,8 @@ class UserController < ApplicationController
                 @achievement = "Certified LEGEND"
             end
 
+            @rank = User.where("completed_workouts > ?", @user.completed_workouts).count + 1
+
             erb :'users/show'
         else
             redirect '/'
