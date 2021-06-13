@@ -20,8 +20,8 @@
                 <li><%=exercise.name%> <%=exercise.sets%> x <%=exercise.reps%></li>
                 <%end%>
         </ul><br>
-
-                <%if @user == current_user%>
+                
+                <%if @user == current_user && @user.most_recent_workout != Time.now.to_s.gsub(/\s.+/,"") %>
                     <form action='/user/<%=current_user.username%>' method="POST">
                     <input id="hidden" type="hidden" name="_method" value="patch">
                        <input class="button" type="submit" name="<%=Time.now%>" value="Workout Complete">
