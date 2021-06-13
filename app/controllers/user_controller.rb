@@ -10,7 +10,7 @@ class UserController < ApplicationController
     post '/signup' do 
         months = ["January", "February", "March", "April", "May", "June", "July",
                   "August", "Sepetember", "October", "November", "December"]
-                  
+
         params[:completed_workouts] = 0
         params[:date_joined] = "#{months[Time.now.month - 1]}, #{Time.now.year}"
         @user = User.new(params)
@@ -54,6 +54,20 @@ class UserController < ApplicationController
             if @current_program
                 @todays_workout = @current_program.workouts.find_by(day_of_week: @days_of_week[Time.now.wday])
             end 
+
+            if @user.completed_workouts.between?(0,10)
+                @achievement = "New User"
+            elsif @user.completed_workouts.between?(10,24)
+                @achievement = "Certified Gym Rat"
+            elsif @user.completed_workouts.between?(25, 49) 
+                @achievement = "Certified BEAST"
+            elsif @user.completed_workouts.between?(50, 99)     
+                @achievement = "Certified FreakaZoid"
+            elsif @user.completed_workouts.between?(100, 499)
+                @achievement = "Certified Lethal Weapon"
+            elsif @user.completed_workouts >= 500
+                @achievement = "Certified LEGEND"
+            end
 
             erb :'users/show'
         else
