@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_13_214609) do
+ActiveRecord::Schema.define(version: 2021_06_13_214823) do
 
   create_table "exercises", force: :cascade do |t|
     t.string "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_06_13_214609) do
     t.string "password_digest"
     t.integer "completed_workouts"
     t.string "most_recent_workout"
+    t.string "date_joined"
   end
 
   create_table "workout_exercises", force: :cascade do |t|
