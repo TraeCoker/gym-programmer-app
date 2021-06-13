@@ -1,6 +1,6 @@
-Arnold = User.create(username: "Arnold", password: "1234")
-Ronnie = User.create(username: "theRonnieColeman", password: "1234")
-Xena = User.create(username: "Xena_warrior_princess", password: "1234")
+Arnold = User.create(username: "Arnold", password: "1234", completed_workouts: 499, date_joined: "June, 2021")
+Ronnie = User.create(username: "theRonnieColeman", password: "1234", completed_workouts: 100, date_joined: "June, 2021")
+Xena = User.create(username: "Xena_warrior_princess", password: "1234", completed_workouts: 50, date_joined: "June, 2021")
 
 PHAT = Program.create(name: "PHAT", days_per_week: 5, user_id: 1)
    sun = Workout.create(day_of_week: "Sunday", program_id: 1)
