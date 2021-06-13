@@ -8,8 +8,13 @@ class UserController < ApplicationController
     end 
 
     post '/signup' do 
+        months = ["January", "February", "March", "April", "May", "June", "July",
+                  "August", "Sepetember", "October", "November", "December"]
+                  
+        params[:completed_workouts] = 0
+        params[:date_joined] = "#{months[Time.now.month - 1]}, #{Time.now.year}"
         @user = User.new(params)
-         
+        
         if @user.save
             session[:user_id] = @user.id
             redirect "/user/#{@user.username}"
