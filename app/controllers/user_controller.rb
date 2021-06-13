@@ -77,6 +77,17 @@ class UserController < ApplicationController
         end 
     end
 
+    patch '/user/:username' do 
+        @user =  User.find_by_username(params[:username])
+        if @user = current_user
+            @user.most_recent_workout = params.keys[1].gsub(/\s.+/,"")
+            @user.completed_workouts += 1
+            @user.save(:validate => false)
+
+            redirect "/user/#{@user.username}"
+        end 
+        redirect "/"
+    end 
 
     private 
 

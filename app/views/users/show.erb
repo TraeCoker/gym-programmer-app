@@ -19,10 +19,15 @@
         <ul><%@todays_workout.exercises.each do |exercise|%>
                 <li><%=exercise.name%> <%=exercise.sets%> x <%=exercise.reps%></li>
                 <%end%>
-            </ul><br>
-                <form action='/user/<%=current_user.username%>' method="POST">
-                 <input class="button" type="submit" name="<%=Time.now%>" value="Workout Complete">
-                 </form>
+        </ul><br>
+
+                <%if @user == current_user%>
+                    <form action='/user/<%=current_user.username%>' method="POST">
+                    <input id="hidden" type="hidden" name="_method" value="patch">
+                       <input class="button" type="submit" name="<%=Time.now%>" value="Workout Complete">
+                    </form>
+                <%end%>
+
             <%else%>
             <h3><%=@days_of_week[Time.now.wday]%></h3> - Off<br>
             <%end%>
