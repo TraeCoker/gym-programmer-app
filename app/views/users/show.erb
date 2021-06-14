@@ -40,7 +40,9 @@
                 
         <%else%>
             <h3> No Programs Yet! </h3>
+            <%if @user == current_user%>
             <a href="/programs/new"><button class="button" >Create New Program</button></a>
+            <%end%>
             <br><br><br><br><br><br><br><br>
         <%end%>
     </div>
