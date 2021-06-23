@@ -14,3 +14,4 @@ gem 'tux'
 gem 'dotenv'
 gem 'rack-flash3'
 gem 'carrierwave', '1.0'
+
