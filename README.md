@@ -22,6 +22,8 @@ and finally run
 ```bash
 shotgun 
 ```
+In your browser, navigate to localhost:9393 to access the homepage.
+
 ## Usage
 Upon visiting the homepage new users are invited to sign up while returning users are invited to log in.
 
