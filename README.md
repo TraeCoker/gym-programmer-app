@@ -1,4 +1,3 @@
-
 # Gym Programmer
 
 Gym Programmer is a Sinatra web app for creating, viewing and updating your weekly workout programs.
@@ -43,7 +42,13 @@ The "programs" tab will give you a news feed like index of all the programs crea
 
 The "new program" tab supplies you with a form to enter a new routine into your repertoire. 
 
+<img width="947" alt="git3" src="https://user-images.githubusercontent.com/79291960/124035360-0a064d00-d9c2-11eb-9607-ba8c21167f69.PNG">
+
+
 When viewing one of your created programs, you are given the option to either edit or delete said program.
+
+<img width="945" alt="git4" src="https://user-images.githubusercontent.com/79291960/124035411-1d191d00-d9c2-11eb-866d-9b48041c562a.PNG">
+
 
 For more information or to see it all in action, here is a full video walkthrough:
 
