@@ -1,5 +1,5 @@
 development:
-  adapater: sqlite3
+  adapter: sqlite3
   encoding: unicode
   database: db/development.sqlite3
   pool: 5
