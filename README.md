@@ -2,7 +2,7 @@
 
 Gym Programmer is a Sinatra web app for creating, viewing and updating your weekly workout programs.
 
-## Installation
+## Navigation
 
 Gym Programmer is available via Heroku at:
 
