@@ -1,0 +1,46 @@
+# Gym Programmer
+
+Gym Programmer is a Sinatra web app for creating, viewing and updating your weekly workout programs.
+
+## Installation
+
+Gym Programmer is available via Heroku at:
+
+https://gym-programmer.herokuapp.com/
+
+## Local Machine Installation
+
+After cloning to a directory on your local machine run
+```bash
+bundle install
+```
+followed by 
+```bash
+rake db:migrate
+```
+and finally run
+```bash
+shotgun 
+```
+## Usage
+Upon visiting the homepage new users are invited to sign up while returning users are invited to log in.
+
+Upon logging in you are taken to your personal profile which displays your workout for the current day (if any) for easy viewing  in the gym and on the go.
+
+Once the workout is complete press "Complete Workout" to add the workout to your tally of completed workouts.
+
+An achievement system as well as a user ranking system are built in to give users a fun encouragement to keep consistent with their exercise routines!
+
+The "programs" tab will give you a news feed like index of all the programs created by all users. You can also visit other user's profiles from here. 
+
+The "new program" tab supplies you with a form to enter a new routine into your repertoire. 
+
+When viewing one of your created programs, you are given the option to either edit or delete said program.
+
+For more information or to see it all in action, here is a full video walkthrough:
+
+https://www.youtube.com/watch?v=RdQ-3BZf8KE
+
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
