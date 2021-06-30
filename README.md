@@ -2,7 +2,7 @@
 
 Gym Programmer is a Sinatra web app for creating, viewing and updating your weekly workout programs.
 
-## Navigation
+## Installation
 
 Gym Programmer is available via Heroku at:
 
@@ -34,7 +34,7 @@ Upon logging in you are taken to your personal profile which displays your worko
 
 <img width="946" alt="git2" src="https://user-images.githubusercontent.com/79291960/124034952-7e8cbc00-d9c1-11eb-8432-9211083b933a.PNG">
 
-Once the workout is complete press "Complete Workout" to add the workout to your tally of completed workouts.
+Once the workout is complete press "Workout Complete" to add the workout to your tally of completed workouts.
 
 An achievement system as well as a user ranking system are built in to give users a fun encouragement to keep consistent with their exercise routines!
 
